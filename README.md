@@ -1,24 +1,35 @@
-# README
+# ChangePool Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the sample application for
+[ChangePool Inc](http://www.changepool.com/).
 
-Things you may want to cover:
+## License
 
-* Ruby version
 
-* System dependencies
+## Getting started
 
-* Configuration
+To get started with the app, clone the repo and then install the needed gems:
 
-* Database creation
+```
+$ bundle install --without production
+```
 
-* Database initialization
+Next, migrate the database:
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Finally, run the test suite to verify that everything is working correctly:
 
-* Deployment instructions
+```
+$ rails test
+```
 
-* ...
+If the test suite passes, you'll be ready to run the app in a local server:
+
+```
+$ rails server
+```
+
+For more information, see the

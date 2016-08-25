@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'front_pages/home'
-
-  get 'front_pages/about'
-
+  
   root 'front_pages#home'
+  get  '/about',   to: 'front_pages#about'
+  get  'partners/signup',  to: 'partners#new'
+  
 end

@@ -17,15 +17,16 @@ class PartnersSignupTest < ActionDispatch::IntegrationTest
   test "valid partner signup information" do
     get partners_signup_path
     assert_difference 'Partner.count', 1 do
-      post partners_path, params: { partner: {  name:  "Partner",
-                                                username:  "1234",
-                                                email: "partner@example.com",
-                                                password:              "password",
-                                                password_confirmation: "password" } }
+      post partners_path, params: { partner: {  name:  "Partner Example",
+                                                username:  "partner29837",
+                                                email: "29837@mail.com",
+                                                password:              "lalalala",
+                                                password_confirmation: "lalalala" } }
     end
     follow_redirect!
     assert_template 'partners/show'
     assert_not flash.empty?
+    assert is_partner_logged_in?
   end
   
 end

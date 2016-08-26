@@ -11,6 +11,7 @@ class PartnersController < ApplicationController
   def create
     @partner = Partner.new(partner_params)
     if @partner.save
+      log_in @partner
       flash[:success] = "Welcome to ChangePool!"
       redirect_to @partner
     else

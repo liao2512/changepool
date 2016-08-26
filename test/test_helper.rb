@@ -7,5 +7,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # Returns true if a test partner is logged in.
+  def is_partner_logged_in?
+    !session[:partner_id].nil?
+  end
 end

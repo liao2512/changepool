@@ -3,8 +3,8 @@ require 'test_helper'
 class PartnerTest < ActiveSupport::TestCase
   
   def setup
-    @partner = Partner.new(name: "Example Partner", username: "partner1", email: "user@example.com", 
-                           password: "foobar", password_confirmation: "foobar")
+    @partner = Partner.new(name: "Partner 1", username: "partner1987234", email: "p1@mail.com", 
+                           password: "lalalala", password_confirmation: "lalalala")
   end
 
   test "should be valid" do

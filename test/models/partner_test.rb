@@ -11,6 +11,11 @@ class PartnerTest < ActiveSupport::TestCase
     assert @partner.valid?
   end
   
+  test "name should be present" do
+    @partner.name = "     "
+    assert !@partner.valid?
+  end
+  
   test "username should be present" do
     @partner.username = "     "
     assert_not @partner.valid?

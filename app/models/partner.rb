@@ -1,5 +1,7 @@
 class Partner < ApplicationRecord
+  attr_accessor :remember_token
   before_save { self.username = username.downcase }
+  validates :name,  presence: true
   validates :username,  presence: true, 
                         length: { minimum:4, maximum: 50 },
                         uniqueness: { case_sensitive: false }
@@ -17,5 +19,16 @@ class Partner < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+  
+  # Returns a random token.
+  def Partner.new_token
+    SecureRandom.urlsafe_base64
+  end
+  
+  # Remembers a partner in the database for use in persistent sessions.
+  def remember_partner
+    self.remember_token = Partner.new_token
+    update_attribute(:remember_digest, Partner.digest(remember_token))
   end
 end

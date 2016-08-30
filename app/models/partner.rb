@@ -14,21 +14,33 @@ class Partner < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   
-  # Returns the hash digest of the given string.
-  def Partner.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-  
-  # Returns a random token.
-  def Partner.new_token
-    SecureRandom.urlsafe_base64
+  class << self
+    # Returns the hash digest of the given string.
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                    BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
+
+    # Returns a random token.
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
   end
   
   # Remembers a partner in the database for use in persistent sessions.
   def remember_partner
     self.remember_token = Partner.new_token
     update_attribute(:remember_digest, Partner.digest(remember_token))
+  end
+  
+  # Returns true if the given token matches the digest.
+  def authenticated?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+  
+  # Forgets a partner.
+  def forget_partner
+    update_attribute(:remember_digest, nil)
   end
 end

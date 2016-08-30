@@ -6,16 +6,17 @@ class PartnerSessionsController < ApplicationController
   def create
     partner = Partner.find_by(username: params[:session][:username].downcase)
     if partner && partner.authenticate(params[:session][:password])
-      log_in partner
+      log_in_partner partner
+      remember_partner partner
       redirect_to partner
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = 'Invalid Partner username/password combination'
       render 'new'
     end
   end
 
   def destroy
-    partner_log_out
+    log_out_partner if partner_logged_in?
     redirect_to root_url
   end
   

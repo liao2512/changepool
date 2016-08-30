@@ -30,6 +30,8 @@ class PartnersLoginTest < ActionDispatch::IntegrationTest
     delete partners_logout_path
     assert_not is_partner_logged_in?
     assert_redirected_to root_url
+    # Simulate a partner clicking logout in a second window.
+    delete partners_logout_path
     follow_redirect!
     assert_select "a[href=?]", partners_login_path
     assert_select "a[href=?]", partners_logout_path,      count: 0

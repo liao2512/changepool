@@ -3,7 +3,7 @@ require 'test_helper'
 class PartnerTest < ActiveSupport::TestCase
   
   def setup
-    @partner = Partner.new(name: "Partner 1", username: "partner1987234", email: "p1@mail.com", 
+    @partner = Partner.new(name: "Partner 1", username: "partner1234", email: "p1@mail.com", 
                            password: "lalalala", password_confirmation: "lalalala")
   end
 
@@ -60,6 +60,10 @@ class PartnerTest < ActiveSupport::TestCase
   test "password should have a minimum length" do
     @partner.password = @partner.password_confirmation = "a" * 5
     assert_not @partner.valid?
+  end
+  
+  test "authenticated? should return false for a partner with nil digest" do
+    assert_not @partner.authenticated?('')
   end
   
 end

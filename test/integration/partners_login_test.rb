@@ -38,4 +38,14 @@ class PartnersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", partner_path(@partner), count: 0
   end
   
+  test "partner login with remembering" do
+    log_in_partner_as(@partner, remember_me: '1')
+    assert_not_nil cookies['remember_token']
+  end
+
+  test "partner login without remembering" do
+    log_in_partner_as(@partner, remember_me: '0')
+    assert_nil cookies['remember_token']
+  end
+  
 end

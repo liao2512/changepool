@@ -12,6 +12,12 @@ module PartnerSessionsHelper
     cookies.permanent[:remember_token] = partner.remember_token
   end
   
+  # Returns true if the given partner is the current partner.
+  def current_partner?(partner)
+    partner == current_partner
+  end
+
+  
   # Returns the current logged-in partner (if any).
   def current_partner
     if session[:partner_id]
@@ -42,5 +48,16 @@ module PartnerSessionsHelper
     forget_partner(current_partner)
     session.delete(:partner_id)
     @current_partner = nil
+  end
+  
+  # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

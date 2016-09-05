@@ -36,7 +36,7 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
-    redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.'
+    redirect_to current_partner, notice: 'Campaign was successfully destroyed.'
   end
   
   private

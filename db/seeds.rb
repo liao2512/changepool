@@ -9,3 +9,9 @@
                   password:              password,
                   password_confirmation: password)
 end
+
+partners = Partner.order(:created_at).take(6)
+50.times do
+  name = Faker::Lorem.word
+  partners.each { |partner| partner.campaigns.create!(name: name) }
+end

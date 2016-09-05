@@ -10,14 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826220213) do
+ActiveRecord::Schema.define(version: 20160902223147) do
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string   "name"
+    t.string   "campaign_type"
+    t.text     "description"
+    t.decimal  "target_funding"
+    t.decimal  "current_funding"
+    t.date     "target_deadline"
+    t.text     "notes"
+    t.string   "status"
+    t.string   "banner_image"
+    t.integer  "partner_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["partner_id", "created_at"], name: "index_campaigns_on_partner_id_and_created_at"
+    t.index ["partner_id"], name: "index_campaigns_on_partner_id"
+  end
 
   create_table "partners", force: :cascade do |t|
     t.string   "name"
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "contact_name"
+    t.string   "email_2"
+    t.string   "contact_name_2"
+    t.string   "partner_type"
+    t.text     "address"
+    t.text     "description"
+    t.string   "phone"
+    t.integer  "case_count"
+    t.decimal  "average_cost"
+    t.decimal  "average_update_time"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.index ["username"], name: "index_partners_on_username", unique: true

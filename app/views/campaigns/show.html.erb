@@ -1,0 +1,15 @@
+<% provide(:title, @campaign.name) %>
+
+<h4>Name: <%= @campaign.name %></h4>
+
+<h4>Type: <%= @campaign.campaign_type %></h4>
+
+<h4>Story: <%= @campaign.description %></h4>
+
+<h4>Target Funding: <%= @campaign.target_funding %></h4>
+
+<h4>Target Deadline: <%= @campaign.target_deadline %></h4>
+
+<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
+<br><br>
+<%= link_to "Partner Profile", current_partner %>

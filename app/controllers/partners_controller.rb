@@ -8,6 +8,7 @@ class PartnersController < ApplicationController
   
   def show
     @partner = Partner.find(params[:id])
+    @campaigns = @partner.campaigns.paginate(page: params[:page])
   end
   
   def new
@@ -50,15 +51,6 @@ class PartnersController < ApplicationController
     def partner_params
       params.require(:partner).permit(:name, :username, :email, 
                                       :password, :password_confirmation)
-    end
-    
-    # Confirms a logged-in partner.
-    def logged_in_partner
-      unless partner_logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to partners_login_url
-      end
     end
     
     # Confirms a logged-in partner.

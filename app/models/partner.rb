@@ -1,4 +1,5 @@
 class Partner < ApplicationRecord
+  has_many :campaigns, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.username = username.downcase }
   validates :name,  presence: true

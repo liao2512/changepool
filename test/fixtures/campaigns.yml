@@ -1,0 +1,26 @@
+campaign_one:
+  name: "Number one"
+  created_at: <%= 10.minutes.ago %>
+  partner: partner1
+
+two:
+  name: "Number two"
+  created_at: <%= 3.years.ago %>
+  partner: partner1
+
+three:
+  name: "Number three"
+  created_at: <%= 2.hours.ago %>
+  partner: partner1
+
+most_recent:
+  name: "Number four"
+  created_at: <%= Time.zone.now %>
+  partner: partner1
+  
+<% 30.times do |n| %>
+campaign_<%= n %>:
+  name: <%= Faker::Lorem.word %>
+  created_at: <%= 42.days.ago %>
+  partner: partner1
+<% end %>

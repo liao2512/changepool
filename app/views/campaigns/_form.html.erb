@@ -1,0 +1,33 @@
+<%= form_for(@campaign) do |f| %>
+
+  <%= render 'shared/error_alert', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :campaign_type %>
+    <%= f.select :campaign_type, ['Education', 'Health'], {}, {class: 'form-control'} %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :target_funding %>
+    <%= f.number_field :target_funding, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :target_deadline %>
+    <%= f.date_field :target_deadline, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>
+<% end %>

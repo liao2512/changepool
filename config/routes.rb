@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  root    'front_pages#home'
-  get     '/about',   to: 'front_pages#about'
+  root    'pages#home'
+  get     '/about',   to: 'pages#about'
   
   get     '/partners/signup',  to: 'partners#new'
   #post    '/partners/signup',  to: 'partners#create'
@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   delete  '/partners/logout',  to: 'partner_sessions#destroy'
   
   resources :partners
+  resources :campaigns
   
 end

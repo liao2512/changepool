@@ -5,3 +5,13 @@
 <h4>Username: <%= @partner.username %></h4>
 
 <h4>Email: <%= @partner.email %></h4>
+
+<%= link_to "New Campaign", new_campaign_path %>
+
+<% if @partner.campaigns.any? %>
+  <h3>My Campaigns (<%= @partner.campaigns.count %>)</h3>
+  <ol>
+    <%= render @campaigns %>
+  </ol>
+  <%= will_paginate @campaigns %>
+<% end %>

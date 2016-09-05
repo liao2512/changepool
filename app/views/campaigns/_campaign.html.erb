@@ -1,0 +1,7 @@
+<ol>
+  <%= campaign.name %>
+  <%= time_ago_in_words(campaign.created_at) %>
+  <%= link_to "Show", campaign_path(campaign) %>
+  <%= link_to "Edit", edit_campaign_path(campaign) %>
+  <%= link_to "Delete", campaign, method: :delete, data: { confirm: "You sure?" } %>
+</ol>

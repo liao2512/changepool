@@ -66,4 +66,12 @@ class PartnerTest < ActiveSupport::TestCase
     assert_not @partner.authenticated?('')
   end
   
+  test "associated campaigns should be destroyed" do
+    @partner.save
+    @partner.campaigns.create!(name: "Lorem ipsum")
+    assert_difference 'Campaign.count', -1 do
+      @partner.destroy
+    end
+  end
+  
 end

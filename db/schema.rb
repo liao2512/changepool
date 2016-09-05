@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902223147) do
+ActiveRecord::Schema.define(version: 20160905210037) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(version: 20160902223147) do
     t.datetime "updated_at",      null: false
     t.index ["partner_id", "created_at"], name: "index_campaigns_on_partner_id_and_created_at"
     t.index ["partner_id"], name: "index_campaigns_on_partner_id"
+  end
+
+  create_table "donors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.date     "birthday"
+    t.string   "country"
+    t.text     "bio"
+    t.boolean  "monthly_fund"
+    t.boolean  "anual_fund"
+    t.boolean  "anonymous"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["email"], name: "index_donors_on_email", unique: true
   end
 
   create_table "partners", force: :cascade do |t|

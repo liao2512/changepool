@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   root    'pages#home'
   get     '/about',   to: 'pages#about'
   
@@ -8,7 +9,13 @@ Rails.application.routes.draw do
   post    '/partners/login',   to: 'partner_sessions#create'
   delete  '/partners/logout',  to: 'partner_sessions#destroy'
   
+  get     '/donors/signup',  to: 'donors#new'
+  get     '/donors/login',   to: 'donor_sessions#new'
+  post    '/donors/login',   to: 'donor_sessions#create'
+  delete  '/donors/logout',  to: 'donor_sessions#destroy'
+  
   resources :partners
   resources :campaigns
+  resources :donors
   
 end

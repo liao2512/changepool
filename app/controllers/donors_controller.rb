@@ -1,5 +1,7 @@
 class DonorsController < ApplicationController
   before_action :set_donor, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_donor, only: [:index, :edit, :update, :destroy]
+  before_action :correct_donor,   only: [:edit, :update]
 
   # GET /donors
   # GET /donors.json

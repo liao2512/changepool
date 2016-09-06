@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def about
   end
+  
+  def donate
+    @campaigns = Campaign.all
+  end
 end

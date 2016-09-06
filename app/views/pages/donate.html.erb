@@ -1,0 +1,13 @@
+<% provide(:title, "Donate") %>
+
+<div class="text-center">
+  <% @campaigns.each do |campaign| %>
+    <h4>Name: <%= campaign.name %></h4>
+    <h4>Type: <%= campaign.campaign_type %></h4>
+    <h4>Story: <%= campaign.description %></h4>
+    <h4>Target Funding: <%= campaign.target_funding %></h4>
+    <h4>Target Deadline: <%= campaign.target_deadline %></h4>
+    <%= link_to "Donate Here", donate_path, class: "btn btn-info" %>
+    <hr>
+  <% end %>
+</div>

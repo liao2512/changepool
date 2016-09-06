@@ -13,11 +13,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Donate", donate_path %></li>
+        <li><%= link_to "About Us", about_path %></li>
         <% if partner_logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+             My Partner Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_partner %></li>
@@ -28,8 +29,23 @@
               </li>
             </ul>
           </li>
+        <% elsif donor_logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My Donor Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_donor %></li>
+              <li><%= link_to "Settings", edit_donor_path(current_donor) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", donors_logout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
         <% else %>
-          <li><%= link_to "Log in", partners_login_path %></li>
+          <li><%= link_to "Donors log in", donors_login_path %></li>
+          <li><%= link_to "Partners log in", partners_login_path %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

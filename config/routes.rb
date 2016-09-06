@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root    'pages#home'
   get     '/about',   to: 'pages#about'
+  get     '/donate',   to: 'pages#donate'
   
   get     '/partners/signup',  to: 'partners#new'
   get     '/partners/login',   to: 'partner_sessions#new'

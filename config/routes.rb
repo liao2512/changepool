@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  get 'donor_sessions/new'
+
   root    'pages#home'
   get     '/about',   to: 'pages#about'
   

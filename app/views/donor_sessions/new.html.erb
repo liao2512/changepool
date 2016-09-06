@@ -1,12 +1,12 @@
-<% provide(:title, "Partners Log in") %>
-<h1>Partner Log in</h1>
+<% provide(:title, "Donors Log in") %>
+<h1>Donor Log in</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: partners_login_path) do |f| %>
+    <%= form_for(:donor_session, url: donors_login_path) do |f| %>
 
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
@@ -19,6 +19,6 @@
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
 
-    <p>New Partner? <%= link_to "Sign up now!", partners_signup_path %></p>
+    <p>New Donor? <%= link_to "Sign up now!", donors_signup_path %></p>
   </div>
 </div>

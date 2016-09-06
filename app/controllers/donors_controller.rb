@@ -25,15 +25,12 @@ class DonorsController < ApplicationController
   # POST /donors.json
   def create
     @donor = Donor.new(donor_params)
-
-    respond_to do |format|
-      if @donor.save
-        format.html { redirect_to @donor, notice: 'Donor was successfully created.' }
-        format.json { render :show, status: :created, location: @donor }
-      else
-        format.html { render :new }
-        format.json { render json: @donor.errors, status: :unprocessable_entity }
-      end
+    if @donor.save
+      log_in_donor @donor
+      flash[:success] = "Welcome to ChangePool!"
+      redirect_to @donor
+    else
+      render 'new'
     end
   end
 

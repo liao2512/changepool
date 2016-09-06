@@ -7,6 +7,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
+  #PARTNERS
+  
   # Returns true if a test partner is logged in.
   def is_partner_logged_in?
     !session[:partner_id].nil?
@@ -15,6 +17,18 @@ class ActiveSupport::TestCase
   # Log in as a particular partner.
   def log_in_partner_as(partner)
     session[:partner_id] = partner.id
+  end
+  
+  #DONORS
+  
+  # Returns true if a test donor is logged in.
+  def is_donor_logged_in?
+    !session[:donor_id].nil?
+  end
+
+  # Log in as a particular donor.
+  def log_in_donor_as(donor)
+    session[:donor_id] = donor.id
   end
 end
 

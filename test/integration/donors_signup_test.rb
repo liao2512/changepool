@@ -25,6 +25,7 @@ class DonorsSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'donors/show'
+    assert is_donor_logged_in?
   end
   
 end

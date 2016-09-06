@@ -3,7 +3,7 @@
 one:
   name: donor1
   email: d1@mail.com
-  password_digest: MyString
+  password_digest: <%= Donor.digest('password') %>
   remember_digest: MyString
   birthday: 2016-09-05
   country: MyString
@@ -15,7 +15,7 @@ one:
 two:
   name: donor2
   email: d2@mail.com
-  password_digest: MyString
+  password_digest: <%= Donor.digest('password') %>
   remember_digest: MyString
   birthday: 2016-09-05
   country: MyString

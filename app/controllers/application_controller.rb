@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # Confirms a logged-in donor.
+    def logged_in_donor
+      unless donor_logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to donors_login_url
+      end
+    end
+    
 end

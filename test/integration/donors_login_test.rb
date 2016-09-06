@@ -3,7 +3,7 @@ require 'test_helper'
 class DonorsLoginTest < ActionDispatch::IntegrationTest
   
   def setup
-    @donor = donors(:one)
+    @donor = donors(:donor1)
   end
   
   test "donor_login with invalid information" do
@@ -19,7 +19,7 @@ class DonorsLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information followed by logout" do
     get donors_login_path
     post donors_login_path, params: { donor_session: { email:    @donor.email,
-                                                       password: 'password' } }
+                                                       password: 'lalalala' } }
     assert is_donor_logged_in?
     assert_redirected_to @donor
     follow_redirect!

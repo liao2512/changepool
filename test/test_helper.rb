@@ -40,4 +40,11 @@ class ActionDispatch::IntegrationTest
                                           password: password,
                                           remember_me: remember_me } }
   end
+  
+  # Log in as a particular donor.
+  def log_in_donor_as(donor, password: 'lalalala', remember_me: '1')
+    post donors_login_path, params: { donor_session: { email: donor.email,
+                                          password: password,
+                                          remember_me: remember_me } }
+  end
 end

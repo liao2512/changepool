@@ -1,48 +1,63 @@
 require 'test_helper'
 
 class DonorsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @donor = donors(:one)
+  
+  def setup
+    @donor = donors(:donor1)
+    @other_donor = donors(:donor2)
   end
-
-  test "should get index" do
-    get donors_url
-    assert_response :success
+  
+  test "should redirect index when not logged in" do
+    get donors_path
+    assert_redirected_to donors_login_url
   end
-
+  
   test "should get new" do
-    get new_donor_url
+    get donors_signup_path
     assert_response :success
   end
+  
+  test "should redirect edit when not logged in" do
+    get edit_donor_path(@donor)
+    assert_not flash.empty?
+    assert_redirected_to donors_login_url
+  end
 
-  test "should create donor" do
-    assert_difference('Donor.count') do
-      post donors_url, params: { donor: { bio: @donor.bio, birthday: @donor.birthday, country: @donor.country, email: "donor3@mail.com", anual_fund: @donor.anual_fund, anonymous: @donor.anonymous, monthly_fund: @donor.monthly_fund, name: @donor.name, password: "lalalala", password_confirmation: "lalalala", remember_digest: @donor.remember_digest } }
+  test "should redirect update when not logged in" do
+    patch donor_path(@donor), params: { donor: {  name: @donor.name,
+                                                  email: @donor.email } }
+    assert_not flash.empty?
+    assert_redirected_to donors_login_url
+  end
+  
+  test "should redirect edit when logged in as wrong user" do
+    log_in_donor_as(@other_donor)
+    get edit_donor_path(@donor)
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect update when logged in as wrong user" do
+    log_in_donor_as(@other_donor)
+    patch donor_path(@donor), params: { donor: { name: @donor.name,
+                                                 email: @donor.email } }
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+  
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'Donor.count' do
+      delete donor_path(@donor)
     end
-
-    assert_redirected_to donor_url(Donor.last)
+    assert_redirected_to donors_login_url
   end
-
-  test "should show donor" do
-    get donor_url(@donor)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_donor_url(@donor)
-    assert_response :success
-  end
-
-  test "should update donor" do
-    patch donor_url(@donor), params: { donor: { bio: @donor.bio, birthday: @donor.birthday, country: @donor.country, email: @donor.email, anual_fund: @donor.anual_fund, anonymous: @donor.anonymous, monthly_fund: @donor.monthly_fund, name: @donor.name, password: "lalalala", password_confirmation: "lalalala", remember_digest: @donor.remember_digest } }
-    assert_redirected_to donor_url(@donor)
-  end
-
-  test "should destroy donor" do
-    assert_difference('Donor.count', -1) do
-      delete donor_url(@donor)
+  
+  test "should destroy when logged in" do
+    log_in_donor_as(@donor)
+    assert_difference 'Donor.count', -1 do
+      delete donor_path(@other_donor)
     end
-
     assert_redirected_to donors_url
   end
+  
 end

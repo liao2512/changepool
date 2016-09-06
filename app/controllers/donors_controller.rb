@@ -72,4 +72,10 @@ class DonorsController < ApplicationController
                                     :password, :password_confirmation, 
                                     :monthly_fund, :anual_fund, :anonymous)
     end
+    
+    # Confirms a logged-in donor.
+    def correct_donor
+      @donor = Donor.find(params[:id])
+      redirect_to(root_url) unless current_donor?(@donor)
+    end
 end

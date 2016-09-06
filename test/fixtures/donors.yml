@@ -1,25 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: donor1
-  email: d1@mail.com
-  password_digest: <%= Donor.digest('password') %>
-  remember_digest: MyString
-  birthday: 2016-09-05
-  country: MyString
-  bio: MyText
-  monthly_fund: false
-  anual_fund: false
-  anonymous: false
-
-two:
-  name: donor2
-  email: d2@mail.com
-  password_digest: <%= Donor.digest('password') %>
-  remember_digest: MyString
-  birthday: 2016-09-05
-  country: MyString
-  bio: MyText
-  monthly_fund: false
-  anual_fund: false
-  anonymous: false
+<% 40.times do |n| %>
+donor<%= n %>:
+  name:  <%= "Donor #{n}" %>
+  email: <%= "d#{n}@mail.com" %>
+  password_digest: <%= Partner.digest('lalalala') %>
+<% end %>

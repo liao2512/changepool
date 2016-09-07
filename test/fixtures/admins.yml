@@ -1,0 +1,6 @@
+<% 40.times do |n| %>
+admin<%= n %>:
+  name:  <%= "Admin #{n}" %>
+  email: <%= "admin#{n}@mail.com" %>
+  password_digest: <%= Admin.digest('lalalala') %>
+<% end %>

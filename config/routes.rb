@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  
+  get 'admin_sessions/new'
+
   get 'donor_sessions/new'
 
   root    'pages#home'
@@ -17,8 +18,14 @@ Rails.application.routes.draw do
   post    '/donors/login',   to: 'donor_sessions#create'
   delete  '/donors/logout',  to: 'donor_sessions#destroy'
   
+  get     '/admins/signup',  to: 'admins#new'
+  get     '/admins/login',   to: 'admin_sessions#new'
+  post    '/admins/login',   to: 'admin_sessions#create'
+  delete  '/admins/logout',  to: 'admin_sessions#destroy'
+  
   resources :partners
   resources :campaigns
   resources :donors
+  resources :admins
   
 end

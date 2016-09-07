@@ -8,7 +8,7 @@ class PartnerSessionsController < ApplicationController
     if partner && partner.authenticate(params[:session][:password])
       log_in_partner partner
       params[:session][:remember_me] == '1' ? remember_partner(partner) : forget_partner(partner)
-      redirect_back_or partner
+      redirect_back_or partner_dashboard_path
     else
       flash.now[:danger] = 'Invalid Partner username/password combination'
       render 'new'

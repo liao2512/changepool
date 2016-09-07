@@ -1,14 +1,18 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_admin, only: [:index, :edit, :update, :destroy]
+  before_action :set_admin,       only: [:show, :edit, :update, :destroy]
+  before_action :correct_admin,   only: [:edit, :update]
 
-  # GET /admins
-  # GET /admins.json
+  layout "admin"
+  
+  def dashboard
+    
+  end
+  
   def index
     @admins = Admin.all
   end
 
-  # GET /admins/1
-  # GET /admins/1.json
   def show
   end
 
@@ -25,15 +29,12 @@ class AdminsController < ApplicationController
   # POST /admins.json
   def create
     @admin = Admin.new(admin_params)
-
-    respond_to do |format|
-      if @admin.save
-        format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
-        format.json { render :show, status: :created, location: @admin }
-      else
-        format.html { render :new }
-        format.json { render json: @admin.errors, status: :unprocessable_entity }
-      end
+    if @admin.save
+      log_in_admin @admin
+      flash[:success] = "Admin created"
+      redirect_to @admin
+    else
+      render 'new'
     end
   end
 
@@ -70,5 +71,11 @@ class AdminsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
       params.require(:admin).permit(:name, :email, :password, :password_confirmation)
+    end
+    
+    # Confirms a logged-in partner.
+    def correct_admin
+      #@admin = Partner.find(params[:id])
+      redirect_to(root_url) unless current_admin?(@admin)
     end
 end

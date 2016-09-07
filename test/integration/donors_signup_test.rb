@@ -19,9 +19,9 @@ class DonorsSignupTest < ActionDispatch::IntegrationTest
     get donors_signup_path
     assert_difference 'Donor.count', 1 do
       post donors_path, params: { donor: { name:  "Example Donor",
-                                         email: "donor9834@mail.com",
-                                         password:              "password",
-                                         password_confirmation: "password" } }
+                                           email: "donor9834@mail.com",
+                                           password:              "password",
+                                           password_confirmation: "password" } }
     end
     follow_redirect!
     assert_template 'donors/show'

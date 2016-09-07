@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include PartnerSessionsHelper
   include DonorSessionsHelper
+  include AdminSessionsHelper
   
   private
 
@@ -20,6 +21,15 @@ class ApplicationController < ActionController::Base
         store_location
         flash[:danger] = "Please log in."
         redirect_to donors_login_url
+      end
+    end
+    
+    # Confirms a logged-in donor.
+    def logged_in_admin
+      unless admin_logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to admins_login_url
       end
     end
     

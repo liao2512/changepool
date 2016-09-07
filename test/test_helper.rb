@@ -30,21 +30,40 @@ class ActiveSupport::TestCase
   def log_in_donor_as(donor)
     session[:donor_id] = donor.id
   end
+  
+  #ADMINS
+  
+  # Returns true if a test admin is logged in.
+  def is_admin_logged_in?
+    !session[:admin_id].nil?
+  end
+
+  # Log in as a particular admin.
+  def log_in_admin_as(admin)
+    session[:admin_id] = admin.id
+  end
 end
 
 class ActionDispatch::IntegrationTest
 
   # Log in as a particular partner.
   def log_in_partner_as(partner, password: 'lalalala', remember_me: '1')
-    post partners_login_path, params: { session: { username: partner.username,
-                                          password: password,
-                                          remember_me: remember_me } }
+    post partners_login_path, params: { session: {  username: partner.username,
+                                                    password: password,
+                                                    remember_me: remember_me } }
   end
   
   # Log in as a particular donor.
   def log_in_donor_as(donor, password: 'lalalala', remember_me: '1')
-    post donors_login_path, params: { donor_session: { email: donor.email,
-                                          password: password,
-                                          remember_me: remember_me } }
+    post donors_login_path, params: { donor_session: {  email: donor.email,
+                                                        password: password,
+                                                        remember_me: remember_me } }
+  end
+  
+  # Log in as a particular admin.
+  def log_in_admin_as(admin, password: 'lalalala', remember_me: '1')
+    post admins_login_path, params: { admin_session: {  email: admin.email,
+                                                        password: password,
+                                                        remember_me: remember_me } }
   end
 end

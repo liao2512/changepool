@@ -20,7 +20,7 @@ class PartnersController < ApplicationController
     if @partner.save
       log_in_partner @partner
       flash[:success] = "Welcome to ChangePool!"
-      redirect_to @partner
+      redirect_to partner_dashboard_path
     else
       render 'new'
     end

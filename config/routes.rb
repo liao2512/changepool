@@ -8,16 +8,19 @@ Rails.application.routes.draw do
   get     '/about',   to: 'pages#about'
   get     '/donate',   to: 'pages#donate'
   
-  get     '/partners/signup',  to: 'partners#new'
-  get     '/partners/login',   to: 'partner_sessions#new'
-  post    '/partners/login',   to: 'partner_sessions#create'
-  delete  '/partners/logout',  to: 'partner_sessions#destroy'
+  get     '/partners/signup',   to: 'partners#new'
+  get     '/partners/login',    to: 'partner_sessions#new'
+  post    '/partners/login',    to: 'partner_sessions#create'
+  delete  '/partners/logout',   to: 'partner_sessions#destroy'
+  get     '/partner/dashboard', to: 'partner_panel#dashboard'
+  get     '/partner/edit',      to: 'partner_panel#edit'
   
   get     '/donors/signup',  to: 'donors#new'
   get     '/donors/login',   to: 'donor_sessions#new'
   post    '/donors/login',   to: 'donor_sessions#create'
   delete  '/donors/logout',  to: 'donor_sessions#destroy'
   
+  get     '/admins/dashboard',  to: 'admins#dashboard'
   get     '/admins/signup',  to: 'admins#new'
   get     '/admins/login',   to: 'admin_sessions#new'
   post    '/admins/login',   to: 'admin_sessions#create'

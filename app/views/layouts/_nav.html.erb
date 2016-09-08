@@ -21,8 +21,7 @@
              My Partner Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_partner %></li>
-              <li><%= link_to "Settings", edit_partner_path(current_partner) %></li>
+              <li><%= link_to "Edit My Profile", partner_edit_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", partners_logout_path, method: "delete" %>

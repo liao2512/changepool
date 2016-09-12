@@ -1,0 +1,35 @@
+<% provide(:title, 'My Campaigns') %>
+
+<h1>Partner Campaigns</h1>
+<%= link_to 'Create New Campaign', new_partner_campaign_path %>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Current Funding</th>
+      <th>Target Funding</th>
+      <th>Target Deadline</th>
+      <th colspan="3">Actions</th>
+    </tr>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td><%= campaign.name %></td>
+        <td><%= campaign.status %></td>
+        <td><%= campaign.current_funding %></td>
+        <td><%= campaign.target_funding %></td>
+        <td><%= campaign.target_deadline %></td>
+        <td><%= link_to 'Show', partner_campaign_path(campaign) %></td>
+        <td><%= link_to 'Edit', edit_partner_campaign_path(campaign) %></td>
+        <td><%= link_to 'Destroy', partner_campaign_path(campaign), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,5 +1,8 @@
-<li>
-  <%= link_to partner.name, partner %>
-  <%= link_to "delete", partner, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-</li>
+<tr>
+  <td><%= link_to partner.name, partner %></td>
+  <td><%= link_to "Show", partner_path(partner) %></td>
+  <td><%= link_to "Edit", edit_partner_path(partner) %></td>
+  <td><%= link_to "Delete", partner, method: :delete,
+                                  data: { confirm: "Are you sure?" } %></td>
+  <td><%= link_to "View Campaigns", partner_campaigns_path(partner) %></td>
+</tr>

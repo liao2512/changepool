@@ -1,9 +1,12 @@
 class CampaignsController < ApplicationController
-  before_action :logged_in_partner, only: [:create, :destroy]
+  before_action :logged_in_admin
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   
+  layout "admin"
+  
   def index
-    @campaigns = Campaign.all
+    @partner = Partner.find(params[:partner_id])
+    @campaigns = @partner.campaigns
   end
   
   def show
@@ -36,16 +39,17 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
-    redirect_to current_partner, notice: 'Campaign was successfully destroyed.'
+    redirect_to partner_campaigns_path(@campaign.partner), notice: 'Campaign was successfully destroyed.'
   end
   
   private
+    
     def set_campaign
       @campaign = Campaign.find(params[:id])
     end
 
     def campaign_params
-      params.require(:campaign).permit(:name, :campaign_type, :description, :target_funding, :target_deadline)
+      params.require(:campaign).permit(:name, :status, :campaign_type, :description, :target_funding, :target_deadline)
     end
 
 end

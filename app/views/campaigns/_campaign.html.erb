@@ -1,6 +1,8 @@
-<%= campaign.name %>
-<%= time_ago_in_words(campaign.created_at) %>
-<%= link_to "Show", campaign_path(campaign) %>
-<%= link_to "Edit", edit_campaign_path(campaign) %>
-<%= link_to "Delete", campaign, method: :delete, data: { confirm: "You sure?" } %>
-<br>
+<tr>
+  <td><%= campaign.name %></td>
+  <td><%= campaign.status %></td>
+  <td><%= time_ago_in_words(campaign.created_at) %> ago</td>
+  <td><%= link_to "Show", campaign_path(campaign) %></td>
+  <td><%= link_to "Edit", edit_campaign_path(campaign) %></td>
+  <td><%= link_to "Delete", campaign, method: :delete, data: { confirm: "Are you sure?" } %></td>
+</tr>

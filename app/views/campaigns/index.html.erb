@@ -1,0 +1,19 @@
+<% provide(:title, 'Partner Campaigns') %>
+<h3><%= @partner.name %> Campaigns</h3>
+<%= link_to "Back to Partners", partners_path %>
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @campaigns %>
+  </tbody>
+</table>

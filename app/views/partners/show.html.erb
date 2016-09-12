@@ -4,10 +4,9 @@
   <h4>Name: <%= @partner.name %></h4>
   <h4>Username: <%= @partner.username %></h4>
   <h4>Email: <%= @partner.email %></h4>
-  <%= link_to "Create a Campaign", new_campaign_path, class: "btn btn-info" %>
   <hr>
   <% if @partner.campaigns.any? %>
-  <h4>My Campaigns (<%= @partner.campaigns.count %>)</h4>
+  <h4>Campaigns (<%= @partner.campaigns.count %>)</h4>
   <%= render @campaigns %>
   <%= will_paginate @campaigns %>
 <% end %>

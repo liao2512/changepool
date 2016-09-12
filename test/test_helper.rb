@@ -62,7 +62,7 @@ class ActionDispatch::IntegrationTest
   
   # Log in as a particular admin.
   def log_in_admin_as(admin, password: 'lalalala', remember_me: '1')
-    post admins_login_path, params: { admin_session: {  email: admin.email,
+    post admins_login_path, params: { admin_session: {  name: admin.name,
                                                         password: password,
                                                         remember_me: remember_me } }
   end

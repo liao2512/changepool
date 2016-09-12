@@ -21,9 +21,9 @@ class PartnersLoginTest < ActionDispatch::IntegrationTest
     post partners_login_path, params: { session: {  username: @partner.username,
                                                     password: 'lalalala' } }
     assert is_partner_logged_in?
-    assert_redirected_to partner_dashboard_path
+    assert_redirected_to partner_panel_index_path
     follow_redirect!
-    assert_template 'partner_panel/dashboard'
+    assert_template 'partner_panel/index'
     #assert_select "a[href=?]", partners_login_path, count: 0
     #assert_select "a[href=?]", partners_logout_path
     #assert_select "a[href=?]", partner_path(@partner)

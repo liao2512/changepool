@@ -9,7 +9,7 @@ class AdminsLoginTest < ActionDispatch::IntegrationTest
   test "login with invalid information" do
     get admins_login_path
     assert_template 'admin_sessions/new'
-    post admins_login_path, params: { admin_session: { email: "", 
+    post admins_login_path, params: { admin_session: { name: "", 
                                                        password: "" } }
     assert_template 'admin_sessions/new'
     assert_not flash.empty?
@@ -19,7 +19,7 @@ class AdminsLoginTest < ActionDispatch::IntegrationTest
   
   test "login with valid information followed by logout" do
     get admins_login_path
-    post admins_login_path, params: { admin_session: {  email:    @admin.email,
+    post admins_login_path, params: { admin_session: {  name:    @admin.name,
                                                         password: 'lalalala' } }
     assert is_admin_logged_in?
     assert_redirected_to admins_dashboard_url

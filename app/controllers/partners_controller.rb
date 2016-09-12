@@ -1,6 +1,7 @@
 class PartnersController < ApplicationController
-  before_action :logged_in_partner, only: [:index, :edit, :update, :destroy]
-  before_action :correct_partner,   only: [:edit, :update]
+  before_action :logged_in_admin, only: [:index, :edit, :update, :destroy]
+  
+  layout "admin"
   
   def index
     @partners = Partner.paginate(page: params[:page])
@@ -20,7 +21,7 @@ class PartnersController < ApplicationController
     if @partner.save
       log_in_partner @partner
       flash[:success] = "Welcome to ChangePool!"
-      redirect_to partner_dashboard_path
+      redirect_to partner_panel_index_path
     else
       render 'new'
     end
@@ -33,7 +34,7 @@ class PartnersController < ApplicationController
   def update
     @partner = Partner.find(params[:id])
     if @partner.update_attributes(partner_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Partner updated"
       redirect_to @partner
     else
       render 'edit'
@@ -53,9 +54,4 @@ class PartnersController < ApplicationController
                                       :password, :password_confirmation)
     end
     
-    # Confirms a logged-in partner.
-    def correct_partner
-      @partner = Partner.find(params[:id])
-      redirect_to(root_url) unless current_partner?(@partner)
-    end
 end

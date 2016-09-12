@@ -3,8 +3,18 @@
 
 <%= will_paginate %>
 
-<ul>
-  <%= render @partners %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @partners %>
+  </tbody>
+</table>
+
 
 <%= will_paginate %>

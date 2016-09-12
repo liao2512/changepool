@@ -1,1 +1,0 @@
-json.extract! @donor, :id, :name, :email, :password_digest, :remember_digest, :birthday, :country, :bio, :isMonthlyUniversalFundMember, :isAnnualUniversalFundMember, :isAnonymous, :created_at, :updated_at

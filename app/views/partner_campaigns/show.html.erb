@@ -1,5 +1,7 @@
 <% provide(:title, @campaign.name) %>
 
+<p id="notice"><%= notice %></p>
+
 <h4>Name: <%= @campaign.name %></h4>
 
 <h4>Status: <%= @campaign.status %></h4>
@@ -8,10 +10,11 @@
 
 <h4>Story: <%= @campaign.description %></h4>
 
+<h4>Current Funding: ----- </h4>
+
 <h4>Target Funding: <%= @campaign.target_funding %></h4>
 
 <h4>Target Deadline: <%= @campaign.target_deadline %></h4>
 
-<%= link_to "Edit Campaign", edit_campaign_path(@campaign) %>
-<br><br>
-<%= link_to "Back to Partner Campaigns", partner_campaigns_path(@campaign.partner) %>
+<%= link_to 'Edit', edit_partner_campaign_path(@campaign) %> |
+<%= link_to 'Back', partner_campaigns_path %>

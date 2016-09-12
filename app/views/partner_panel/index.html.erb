@@ -1,0 +1,22 @@
+<% provide(:title, "Dashboard") %>
+
+<div class="row text-center">
+  <h2>Partner Dashboard</h2>
+  <hr>
+  <div class="col-md-6">
+    <h3>My Partner Profile</h3>
+    <%= link_to "Edit My Profile", edit_partner_panel_path(id: "profile") %>
+    <h4>Name: <%= @partner.name %></h4>
+    <h4>Username: <%= @partner.username %></h4>
+    <h4>Email: <%= @partner.email %></h4>
+    <h4>Phone: <%= @partner.phone %></h4>
+    <h4>Rest of Fields</h4>
+  </div>
+  <div class="col-md-6">
+    <h3>My Campaigns</h3>
+    <%= link_to "View My Campaigns", my_campaigns_path %>
+    <h4>Active Campaigns: ----</h4>
+    <h4>Campaigns waiting for Approval: ----</h4>
+    <h4>Total Funds: ----</h4>
+  </div>
+</div>

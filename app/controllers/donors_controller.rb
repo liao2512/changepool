@@ -1,30 +1,23 @@
 class DonorsController < ApplicationController
   before_action :set_donor, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_donor, only: [:index, :edit, :update, :destroy]
-  before_action :correct_donor,   only: [:edit, :update]
+  before_action :logged_in_admin, only: [:index, :edit, :update, :destroy]
+  
+  layout "admin"
 
-  # GET /donors
-  # GET /donors.json
   def index
     @donors = Donor.all
   end
 
-  # GET /donors/1
-  # GET /donors/1.json
   def show
   end
 
-  # GET /donors/new
   def new
     @donor = Donor.new
   end
 
-  # GET /donors/1/edit
   def edit
   end
 
-  # POST /donors
-  # POST /donors.json
   def create
     @donor = Donor.new(donor_params)
     if @donor.save
@@ -36,8 +29,6 @@ class DonorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /donors/1
-  # PATCH/PUT /donors/1.json
   def update
     respond_to do |format|
       if @donor.update(donor_params)
@@ -50,8 +41,6 @@ class DonorsController < ApplicationController
     end
   end
 
-  # DELETE /donors/1
-  # DELETE /donors/1.json
   def destroy
     @donor.destroy
     respond_to do |format|
@@ -72,10 +61,5 @@ class DonorsController < ApplicationController
                                     :password, :password_confirmation, 
                                     :monthly_fund, :anual_fund, :anonymous)
     end
-    
-    # Confirms a logged-in donor.
-    def correct_donor
-      @donor = Donor.find(params[:id])
-      redirect_to(root_url) unless current_donor?(@donor)
-    end
+  
 end

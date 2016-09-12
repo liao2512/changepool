@@ -4,12 +4,12 @@ class AdminSessionsController < ApplicationController
   end
   
   def create
-    admin = Admin.find_by(email: params[:admin_session][:email].downcase)
+    admin = Admin.find_by(name: params[:admin_session][:name].downcase)
     if admin && admin.authenticate(params[:admin_session][:password])
       log_in_admin admin
-      redirect_to admins_dashboard_path
+      redirect_back_or admins_dashboard_path
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = 'Invalid username/password combination'
       render 'new'
     end
   end

@@ -1,0 +1,61 @@
+<%= form_for(@partner, url: @path) do |f| %>
+
+  <%= render 'shared/error_alert', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :contact_name, "Contact Name" %>
+    <%= f.text_field :contact_name, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :phone, "Phone" %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :contact_name_2, "Contact Name 2" %>
+    <%= f.text_field :contact_name_2, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email_2, "Contact 2 Email" %>
+    <%= f.email_field :email_2, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :address, "Address" %>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

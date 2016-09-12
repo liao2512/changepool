@@ -34,8 +34,7 @@
               My Donor Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_donor %></li>
-              <li><%= link_to "Settings", edit_donor_path(current_donor) %></li>
+              <li><%= link_to "Profile", donor_panel_index_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", donors_logout_path, method: "delete" %>

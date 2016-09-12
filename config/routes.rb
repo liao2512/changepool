@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   resources :partner_panel
   resources :my_campaigns
   
-  get     '/donors/signup',  to: 'donors#new'
+  get     '/donors/signup',  to: 'donor_panel#new'
   get     '/donors/login',   to: 'donor_sessions#new'
   post    '/donors/login',   to: 'donor_sessions#create'
   delete  '/donors/logout',  to: 'donor_sessions#destroy'
+  resources :donor_panel
   
   get     '/admins/dashboard',  to: 'admins#dashboard'
   get     '/admins/signup',     to: 'admins#new'

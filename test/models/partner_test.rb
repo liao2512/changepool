@@ -63,7 +63,7 @@ class PartnerTest < ActiveSupport::TestCase
   end
   
   test "authenticated? should return false for a partner with nil digest" do
-    assert_not @partner.authenticated?('')
+    assert_not @partner.authenticated?(:remember, '')
   end
   
   test "associated campaigns should be destroyed" do

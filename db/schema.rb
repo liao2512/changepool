@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907164639) do
+ActiveRecord::Schema.define(version: 20160913135154) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -68,10 +68,13 @@ ActiveRecord::Schema.define(version: 20160907164639) do
     t.integer  "case_count"
     t.decimal  "average_cost"
     t.decimal  "average_update_time"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",           default: false
+    t.datetime "activated_at"
     t.index ["username"], name: "index_partners_on_username", unique: true
   end
 

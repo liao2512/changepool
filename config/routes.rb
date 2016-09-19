@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get     '/partners/login',    to: 'partner_sessions#new'
   post    '/partners/login',    to: 'partner_sessions#create'
   delete  '/partners/logout',   to: 'partner_sessions#destroy'
+  resources :partner_activations, only: [:edit]
   resources :partner_panel
-  resources :my_campaigns
+  resources :partner_campaigns
   
   get     '/donors/signup',  to: 'donor_panel#new'
   get     '/donors/login',   to: 'donor_sessions#new'

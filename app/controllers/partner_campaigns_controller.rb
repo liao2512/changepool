@@ -1,4 +1,4 @@
-class MyCampaignsController < ApplicationController
+class PartnerCampaignsController < ApplicationController
   before_action :logged_in_partner
   before_action :set_partner_campaign, only: [:show, :edit, :update, :destroy]
   before_action :new_path, only: [:new, :create]

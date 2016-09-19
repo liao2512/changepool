@@ -1,0 +1,5 @@
+Hi <%= @partner.name %>,
+
+Welcome to the ChangePool! Click on the link below to activate your account:
+
+<%= edit_partner_activation_url(@partner.activation_token, email: @partner.email) %>

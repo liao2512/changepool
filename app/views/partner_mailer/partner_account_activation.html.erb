@@ -1,0 +1,10 @@
+<h1>ChangePool</h1>
+
+<p>Hi <%= @partner.name %>,</p>
+
+<p>
+Welcome to ChangePool! Click on the link below to activate your account:
+</p>
+
+<%= link_to "Activate", edit_partner_activation_url(@partner.activation_token,
+                                                    email: @partner.email) %>

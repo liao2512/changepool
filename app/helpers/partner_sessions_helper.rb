@@ -23,8 +23,8 @@ module PartnerSessionsHelper
     if session[:partner_id]
       @current_partner ||= Partner.find_by(id: session[:partner_id])
     elsif (partner_id = cookies.signed[:partner_id])
-      partner = Partner.find_by(id: cookies.signed[:partner_id])
-      if partner && partner.authenticated?(cookies[:remember_token])
+      partner = Partner.find_by(id: partner_id)
+      if partner && partner.authenticated?(:remember, cookies[:remember_token])
         log_in_partner partner
         @current_partner = partner
       end

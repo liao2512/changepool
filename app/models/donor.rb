@@ -1,6 +1,6 @@
 class Donor < ApplicationRecord
   
-  before_save { email.downcase! }
+  before_save :downcase_email
   validates :name, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -15,4 +15,11 @@ class Donor < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+  
+  private
+  
+    # Converts email to all lower-case.
+    def downcase_email
+      self.email = email.downcase
+    end
 end

@@ -4,4 +4,6 @@ partner<%= n %>:
   username:  <%= "partner#{n}" %>
   email: <%= "p#{n}@mail.com" %>
   password_digest: <%= Partner.digest('lalalala') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

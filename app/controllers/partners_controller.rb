@@ -19,9 +19,12 @@ class PartnersController < ApplicationController
   def create
     @partner = Partner.new(partner_params)
     if @partner.save
-      log_in_partner @partner
-      flash[:success] = "Welcome to ChangePool!"
-      redirect_to partner_panel_index_path
+      #log_in_partner @partner
+      #flash[:success] = "Welcome to ChangePool!"
+      #redirect_to partner_panel_index_path
+      PartnerMailer.partner_account_activation(@partner).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end

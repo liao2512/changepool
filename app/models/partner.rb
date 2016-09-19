@@ -1,7 +1,8 @@
 class Partner < ApplicationRecord
   has_many :campaigns, dependent: :destroy
-  attr_accessor :remember_token
-  before_save { self.username = username.downcase }
+  attr_accessor :remember_token, :activation_token
+  before_save :downcase_username
+  before_create :create_activation_digest
   validates :name,  presence: true
   validates :username,  presence: true, 
                         length: { minimum:4, maximum: 50 },
@@ -36,13 +37,26 @@ class Partner < ApplicationRecord
   end
   
   # Returns true if the given token matches the digest.
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
   
   # Forgets a partner.
   def forget_partner
     update_attribute(:remember_digest, nil)
   end
+  
+  private
+  
+    def downcase_username
+      self.username = username.downcase
+    end
+
+    def create_activation_digest
+      self.activation_token  = Partner.new_token
+      self.activation_digest = Partner.digest(activation_token)
+    end
+  
 end
